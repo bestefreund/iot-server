@@ -141,6 +141,10 @@ docker-compose up -d
 
 ```
 mkdir -p /srv/openhab/userdata
+mkdir -p /srv/mosquitto/data
+mkdir -p /srv/influxdb/data
+mkdir -p /srv/grafana/data
+
 
 cd openhab
 

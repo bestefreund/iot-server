@@ -1,15 +1,128 @@
 services:
   openhab:
-    image: "openhab/openhab:3.2.0"
+    image: openhab/openhab:3.2.0
+    container_name: "openhab"
+    depends_on:
+      - influxdb
+      - mosquitto
     restart: always
-    hostname: 'openhab'
-    container_name: 'openhab'
-    network_mode: host
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
       - "/srv/openhab/userdata:/openhab/userdata"
     environment:
-      OPENHAB_HTTP_PORT: "8080"
-      OPENHAB_HTTPS_PORT: "8443"
-      EXTRA_JAVA_OPTS: "-Duser.timezone=Europe/Berlin"
+      TZ: ${TZ}
+      OPENHAB_HTTP_PORT: ${OPENHAB_HTTP_PORT}
+      OPENHAB_HTTPS_PORT: ${OPENHAB_HTTPS_PORT}
+      CRYPTO_POLICY: "unlimited"
+      EXTRA_JAVA_OPTS: "-Duser.timezone=${TZ}"
+      USER_ID: 999
+      GROUP_ID: 994
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    network_mode: host
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: "mosquitto"
+    restart: always
+    volumes:
+      - "./data/mosquitto_conf:/mosquitto/config"
+      - "/srv/mosquitto/data:/mosquitto/data"
+    ports:
+      - ${MOSQUITTO_MQTT_PORT}:1883
+      - ${MOSQUITTO_MQTTS_PORT}:8883
+    environment:
+      TZ: ${TZ}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      app-nw:
+        aliases:
+          - mqtt
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: "influxdb"
+    restart: always
+    volumes:
+      - "/srv/influxdb/data:/var/lib/influxdb"
+    ports:
+      - ${INFLUXDB_DB_PORT}:8086      
+    environment:
+      - INFLUXDB_DATA_ENGINE=tsm1
+      - INFLUXDB_REPORTING_DISABLED=false
+      - INFLUXDB_ADMIN_USER=${INFLUXDB_ADMIN_USER}
+      - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_ADMIN_PASSWORD}
+      - INFLUXDB_USER=${INFLUXDB_USER}
+      - INFLUXDB_USER_PASSWORD=${INFLUXDB_USER_PASSWORD}
+      - INFLUXDB_READ_USER=${INFLUXDB_READ_USER}
+      - INFLUXDB_READ_USER_PASSWORD=${INFLUXDB_READ_USER_PASSWORD}
+      - INFLUXDB_DB=${INFLUXDB_OPENHAB_DB}
+      - INFLUXDB_HTTP_LOG_ENABLED=false
+      - INFLUXDB_META_LOGGING_ENABLED=false
+      - INFLUXDB_DATA_QUERY_LOG_ENABLED=false
+      - INFLUXDB_LOGGING_LEVEL=warn
+      - TZ=${TZ}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      app-nw:
+      backend-nw:
+        aliases:
+          - db
+
+  renderer:
+    image: asksven/grafana-image-renderer:1
+    container_name: "renderer"
+    restart: always
+    environment:
+      ENABLE_METRICS: 'true'
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - backend-nw
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: "grafana"
+    depends_on:
+      - influxdb
+      - renderer
+    restart: always
+    user: "0"
+    volumes:
+      - "/srv/grafana/data:/var/lib/grafana"
+    ports:
+      - ${GRAFANA_HTTP_PORT}:3000
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=YOURMAILSERVER:465
+      - GF_SMTP_USER=YOURSMTPUSER
+      - GF_SMTP_PASSWORD=SMTPPASSWORD
+      - GF_SMTP_FROM_ADDRESS=MAILFROMADRESS
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_RENDERING_SERVER_URL=http://renderer:8081/render
+      - GF_RENDERING_CALLBACK_URL=http://grafana:3000/
+      - GF_LOG_FILTERS=rendering:debug
+      - TZ=${TZ}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    networks:
+      - app-nw
+      - backend-nw
+
+networks:
+  app-nw:
+    internal: false
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: app-openhab
+  backend-nw:
+    internal: true
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: be-openhab
+
