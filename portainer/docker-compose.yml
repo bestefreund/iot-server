@@ -1,0 +1,18 @@
+networks:
+  network:
+    driver: bridge
+
+services:
+  portainer:
+    image: 'portainer/portainer-ce:2.11.0'
+    networks:
+      network:
+    restart: always
+    hostname: 'portainer'
+    container_name: 'portainer'
+    ports:
+      - '9002:9002'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+      - '/srv/portainer/data:/data'
+      - '/var/run/docker.sock:/var/run/docker.sock'
