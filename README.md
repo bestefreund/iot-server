@@ -142,10 +142,13 @@ docker-compose up -d
 ```
 sudo mkdir -p /srv/openhab/userdata
 sudo mkdir -p /srv/mosquitto/data
+sudo mkdir -p /srv/mosquitto/config
 sudo mkdir -p /srv/influxdb/data
 sudo mkdir -p /srv/grafana/data
 
 cd openhab
+
+sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/data/
 
 docker-compose up -d
 ```
