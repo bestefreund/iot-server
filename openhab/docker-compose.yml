@@ -97,11 +97,7 @@ services:
       - ${GRAFANA_HTTP_PORT}:3000
     environment:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
-      - GF_SMTP_ENABLED=true
-      - GF_SMTP_HOST=YOURMAILSERVER:465
-      - GF_SMTP_USER=YOURSMTPUSER
-      - GF_SMTP_PASSWORD=SMTPPASSWORD
-      - GF_SMTP_FROM_ADDRESS=MAILFROMADRESS
+      - GF_SMTP_ENABLED=false
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_SECURITY_ALLOW_EMBEDDING=true
       - GF_RENDERING_SERVER_URL=http://renderer:8081/render
