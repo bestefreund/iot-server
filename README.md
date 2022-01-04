@@ -148,7 +148,16 @@ sudo mkdir -p /srv/grafana/data
 
 cd openhab
 
-sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/data/
+# Set the passwords by your own!
+INFLUX_ADMIN_PASSWD=""
+INFLUX_USER_PASSWD=""
+INFLUX_USER_READ_PASSWD=""
+
+sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
+sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
+sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
+
+sudo cp ./mosquitto_conf/mosquitto* /srv/mosquitto/config/
 
 docker-compose up -d
 ```
