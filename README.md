@@ -130,7 +130,7 @@ docker info
 ## Run Portainer
 
 ```
-mkdir -p /srv/portainer/data
+sudo mkdir -p /srv/portainer/data
 
 cd portainer
 
@@ -140,11 +140,10 @@ docker-compose up -d
 ## Run OpenHAB
 
 ```
-mkdir -p /srv/openhab/userdata
-mkdir -p /srv/mosquitto/data
-mkdir -p /srv/influxdb/data
-mkdir -p /srv/grafana/data
-
+sudo mkdir -p /srv/openhab/userdata
+sudo mkdir -p /srv/mosquitto/data
+sudo mkdir -p /srv/influxdb/data
+sudo mkdir -p /srv/grafana/data
 
 cd openhab
 
