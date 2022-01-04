@@ -140,6 +140,8 @@ docker-compose up -d
 ## Run OpenHAB
 
 ```
+mkdir -p /srv/openhab/userdata
+
 cd openhab
 
 docker-compose up -d
