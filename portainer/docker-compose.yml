@@ -11,7 +11,7 @@ services:
     hostname: 'portainer'
     container_name: 'portainer'
     ports:
-      - '9002:9002'
+      - '9000:9000'
     volumes:
       - '/etc/localtime:/etc/localtime:ro'
       - '/srv/portainer/data:/data'
