@@ -157,7 +157,8 @@ sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 
-sudo cp ./mosquitto_conf/mosquitto* /srv/mosquitto/config/
+sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/config/
+sudo touch /srv/mosquitto/config/mosquitto.passwd
 
 docker-compose up -d
 ```
