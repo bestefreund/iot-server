@@ -27,7 +27,7 @@ services:
     container_name: "mosquitto"
     restart: always
     volumes:
-      - "./data/mosquitto_conf:/mosquitto/config"
+      - "./mosquitto_conf:/mosquitto/config"
       - "/srv/mosquitto/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
