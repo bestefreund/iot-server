@@ -126,3 +126,19 @@ sudo reboot
 
 docker info
 ```
+
+## Run Portainer
+
+```
+cd portainer
+
+docker-compose up -d
+```
+
+## Run OpenHAB
+
+```
+cd openhab
+
+docker-compose up -d
+```
