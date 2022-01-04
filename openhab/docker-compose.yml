@@ -2,6 +2,8 @@ services:
   openhab:
     image: "openhab/openhab:3.2.0"
     restart: always
+    hostname: 'openhab'
+    container_name: 'openhab'
     network_mode: host
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
