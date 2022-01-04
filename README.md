@@ -6,6 +6,8 @@ Raspberry Docker: https://withblue.ink/2020/06/24/docker-and-docker-compose-on-r
 
 RasperryOS 64-Bit: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-11-08/
 
+OpenHAB 3 Docker Installation: https://www.laub-home.de/wiki/OpenHAB_3_Docker_Installation
+
 ## Config
 
 After RaspberryOS installation login to the Raspberry & configure ssh
