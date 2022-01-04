@@ -130,6 +130,8 @@ docker info
 ## Run Portainer
 
 ```
+mkdir -p /srv/portainer/data
+
 cd portainer
 
 docker-compose up -d
