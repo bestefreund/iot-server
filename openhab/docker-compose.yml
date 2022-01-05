@@ -41,6 +41,12 @@ services:
         aliases:
           - mqtt
 
+  mqtt-client:
+     image: vergissberlin/hivemq-mqtt-web-client
+     restart: always
+     ports:
+        - 1884:1884
+
   influxdb:
     image: influxdb:1.8
     container_name: "influxdb"
