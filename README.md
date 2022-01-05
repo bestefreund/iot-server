@@ -8,6 +8,8 @@ RasperryOS 64-Bit: https://downloads.raspberrypi.org/raspios_lite_arm64/images/r
 
 OpenHAB 3 Docker Installation: https://www.laub-home.de/wiki/OpenHAB_3_Docker_Installation
 
+Control Tasmota flashed devices via MQTT: https://community.openhab.org/t/control-tasmota-flashed-devices-via-mqtt/104099
+
 ## Config
 
 After RaspberryOS installation login to the Raspberry & configure ssh
@@ -161,6 +163,10 @@ sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 
 sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/config/
 sudo touch /srv/mosquitto/config/mosquitto.passwd
+
+sudo ufw allow 8080
+sudo ufw reload
+sudo ufw status
 
 docker-compose up -d
 ```
