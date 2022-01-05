@@ -43,9 +43,12 @@ services:
 
   mqtt-client:
      image: vergissberlin/hivemq-mqtt-web-client
+     container_name: "mqtt-client"
      restart: always
      ports:
         - 1884:1884
+     networks:
+        - backend-nw
 
   influxdb:
     image: influxdb:1.8
