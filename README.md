@@ -92,8 +92,7 @@ sudo ufw status
 
 Install some required packages first
 ```
-sudo apt update
-sudo apt install -y haveged apt-transport-https ca-certificates curl gnupg2 software-properties-common
+sudo apt-get install -y haveged apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
 # Get the Docker signing key for packages
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -102,8 +101,8 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
 
 # Install Docker
-sudo apt update
-sudo apt install -y --no-install-recommends docker-ce cgroupfs-mount
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends docker-ce cgroupfs-mount
 sudo usermod -aG docker $USER
 ```
 
@@ -111,7 +110,6 @@ sudo usermod -aG docker $USER
 
 ```
 # Install required packages
-sudo apt update
 sudo apt install -y python3-pip libffi-dev
 
 # Install Docker Compose from pip (using Python3)
