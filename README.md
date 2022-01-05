@@ -63,7 +63,7 @@ sudo reboot
 ### Insert bashrc-Aliases
 bash -c "cat >> ~/.bashrc" <<'EOF'
 
-### Useful Aiases
+### Useful Ailases
 alias sourcebash="source ~/.bashrc"
 alias bashrc="nano ~/.bashrc"
 alias pinge="ping 8.8.8.8"
