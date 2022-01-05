@@ -32,6 +32,7 @@ services:
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
       - ${MOSQUITTO_MQTTS_PORT}:8883
+      - 1884:8080
     environment:
       TZ: ${TZ}
     labels:
@@ -40,15 +41,6 @@ services:
       app-nw:
         aliases:
           - mqtt
-
-  mqtt-client:
-     image: secanis/hivemq-mqtt-web-client
-     container_name: "mqtt-client"
-     restart: always
-     ports:
-        - 1884:80
-     networks:
-        - backend-nw
 
   influxdb:
     image: influxdb:1.8
