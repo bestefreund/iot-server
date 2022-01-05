@@ -46,7 +46,7 @@ services:
      container_name: "mqtt-client"
      restart: always
      ports:
-        - 1884:1884
+        - 1884:80
      networks:
         - backend-nw
 
