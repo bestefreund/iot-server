@@ -28,7 +28,9 @@ sudo raspi-config
 ```
 
 ## Basic
+
 ```
+# Enable 64-bit
 sudo bash -c 'echo "arm_64bit=1" >> /boot/config.txt'
 sudo reboot
 
@@ -90,8 +92,8 @@ sudo ufw status
 
 ## Docker
 
-Install some required packages first
 ```
+# Install some required packages first
 sudo apt-get install -y haveged apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
 # Get the Docker signing key for packages
