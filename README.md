@@ -164,7 +164,7 @@ sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/config/
 sudo touch /srv/mosquitto/config/mosquitto.passwd
 
-sudo ufw allow 80
+sudo ufw allow 8080
 sudo ufw reload
 sudo ufw status
 
