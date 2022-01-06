@@ -42,20 +42,6 @@ services:
         aliases:
           - mqtt
   
-  mqtt-client:
-    image: raphcalvignac/rpi-mqtt-inspector
-    container_name: mqtt-client
-    restart: always
-    ports:
-      - 1885:8080
-    environment:
-      - BROKER_PORT_1883_TCP_PORT=1884
-      - BROKER_PORT_1883_TCP_ADDR=mqtt
-    networks:
-      app-nw:
-        aliases:
-          - mqtt-client
-
   influxdb:
     image: influxdb:1.8
     container_name: "influxdb"
