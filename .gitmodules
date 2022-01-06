@@ -1,0 +1,3 @@
+[submodule "hivemq-mqtt-web-client"]
+	path = hivemq-mqtt-web-client
+	url = https://gitlab.bjoern-freund.de/shared/hivemq-mqtt-web-client
