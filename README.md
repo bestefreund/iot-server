@@ -136,7 +136,7 @@ docker info
 ```
 sudo mkdir -p /media/data/portainer/data
 
-cd portainer
+cd ~/iot-server/portainer
 
 docker-compose up -d
 ```
@@ -154,8 +154,8 @@ docker build -t mqtt-webclient .
 sudo mkdir -p /media/data/openhab/userdata
 sudo mkdir -p /media/data/mosquitto/data
 sudo mkdir -p /media/data/config
-sudo mkdir -p /media/data/data
-sudo mkdir -p /media/data/data
+sudo mkdir -p /media/influxdb/data
+sudo mkdir -p /media/grafana/data
 
 cd ../iot-server/openhab
 
