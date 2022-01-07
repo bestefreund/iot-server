@@ -134,7 +134,7 @@ docker info
 ## Run Portainer
 
 ```
-sudo mkdir -p /srv/portainer/data
+sudo mkdir -p /media/data/portainer/data
 
 cd portainer
 
@@ -151,11 +151,11 @@ git clone https://gitlab.bjoern-freund.de/shared/hivemq-mqtt-web-client.git
 cd hivemq-mqtt-web-client
 docker build -t mqtt-webclient .
 
-sudo mkdir -p /srv/openhab/userdata
-sudo mkdir -p /srv/mosquitto/data
-sudo mkdir -p /srv/mosquitto/config
-sudo mkdir -p /srv/influxdb/data
-sudo mkdir -p /srv/grafana/data
+sudo mkdir -p /media/data/openhab/userdata
+sudo mkdir -p /media/data/mosquitto/data
+sudo mkdir -p /media/data/config
+sudo mkdir -p /media/data/data
+sudo mkdir -p /media/data/data
 
 cd ../iot-server/openhab
 
@@ -168,8 +168,8 @@ sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 
-sudo cp ./mosquitto_conf/mosquitto.conf /srv/mosquitto/config/
-sudo touch /srv/mosquitto/config/mosquitto.passwd
+sudo cp ./mosquitto_conf/mosquitto.conf /media/data/mosquitto/config/
+sudo touch /media/data/mosquitto/config/mosquitto.passwd
 
 sudo ufw allow 8080
 sudo ufw reload
