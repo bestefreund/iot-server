@@ -144,6 +144,10 @@ docker-compose up -d
 ## Run OpenHAB
 
 ```
+# Build MQTT-WebClient
+cd hivemq-mqtt-web-client
+docker build -t mqtt-webclient .
+
 sudo mkdir -p /srv/openhab/userdata
 sudo mkdir -p /srv/mosquitto/data
 sudo mkdir -p /srv/mosquitto/config
