@@ -42,17 +42,6 @@ services:
         aliases:
           - mqtt
   
-  mqtt-client:
-    image: mqtt-webclient
-    container_name: mqtt-client
-    restart: always
-    ports:
-      - 1885:80
-    networks:
-      app-nw:
-        aliases:
-          - mqtt-client
-
   influxdb:
     image: influxdb:1.8
     container_name: "influxdb"
