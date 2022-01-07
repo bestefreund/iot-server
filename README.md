@@ -144,7 +144,10 @@ docker-compose up -d
 ## Run OpenHAB
 
 ```
+cd ~
+
 # Build MQTT-WebClient
+git clone https://gitlab.bjoern-freund.de/shared/hivemq-mqtt-web-client.git
 cd hivemq-mqtt-web-client
 docker build -t mqtt-webclient .
 
@@ -154,7 +157,7 @@ sudo mkdir -p /srv/mosquitto/config
 sudo mkdir -p /srv/influxdb/data
 sudo mkdir -p /srv/grafana/data
 
-cd openhab
+cd ../iot-server/openhab
 
 # Set the passwords by your own!
 INFLUX_ADMIN_PASSWD=""
