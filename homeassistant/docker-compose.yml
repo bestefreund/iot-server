@@ -5,41 +5,10 @@ services:
     volumes:
       - ./hass-config:/config
       - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
+    restart: always
     network_mode: host
     depends_on:
-      - mariadb
       - mosquitto
-
-  mariadb:
-    image: linuxserver/mariadb
-    container_name: mariadb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: ha_db
-      MYSQL_USER: homeassistant
-      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
-      PUID: 1000
-      PGID: 1000
-    volumes:
-      - ./mariadb:/config
-    ports:
-      - "3306:3306"
-
-  nodered:
-    container_name: nodered
-    image: nodered/node-red
-    ports:
-      - "1880:1880"
-    volumes:
-      - ./nodered:/data
-    depends_on:
-      - homeassistant
-      - mosquitto
-    environment:
-      TZ: "Europe/Madrid"
-    restart: unless-stopped
 
   mosquitto:
     image: eclipse-mosquitto:latest
@@ -55,6 +24,20 @@ services:
       TZ: ${TZ}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+
+  nodered:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+    depends_on:
+      - homeassistant
+      - mosquitto
+    environment:
+      TZ: "Europe/Madrid"
+    restart: unless-stopped
 
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
