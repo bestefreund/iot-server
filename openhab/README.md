@@ -1,6 +1,6 @@
-# Run OpenHAB
+# Run OpenHab
 
-Setup an OpenHAB infrastructure including Mosquitto, InfluxDB & Grafana
+Setup an OpenHab infrastructure including Mosquitto, InfluxDB & Grafana
 
 ```
 cd ~

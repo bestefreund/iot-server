@@ -40,7 +40,7 @@ Raspberry Docker:
 RasperryOS 64-Bit:
  * Download: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-11-08/
 
-OpenHAB:
+OpenHab:
  * Docker: https://www.laub-home.de/wiki/OpenHAB_3_Docker_Installation
  * Tasmota: https://community.openhab.org/t/control-tasmota-flashed-devices-via-mqtt/104099
 
