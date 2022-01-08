@@ -41,7 +41,7 @@ services:
       - mosquitto
     environment:
       TZ: "Europe/Madrid"
-    user: "${PUID}:${PGID}"
+    user: "${PUID}"
 
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
