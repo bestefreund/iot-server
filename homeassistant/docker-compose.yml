@@ -30,7 +30,7 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - ./nodered:/data
+      - /media/data/homeassistant/nodered/data:/data
     depends_on:
       - homeassistant
       - mosquitto
