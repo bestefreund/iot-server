@@ -1,14 +1,31 @@
 # IoT-Server: Raspberry Pi 3 with Docker / openHub
 
+## Descritption
+
+This Repo is intended for testing & tools for related to IoT-devices.
+You can choose one of the platform or all of them, but be aware of hardware & resource limitations of your system.
+In every folder you'll find a docker-compose file representing an independent infratructure.
+
 ## Referneces
 
-Raspberry Docker: https://withblue.ink/2020/06/24/docker-and-docker-compose-on-raspberry-pi-os.html
+Raspberry Docker:
+ * HowTo:  https://withblue.ink/2020/06/24/docker-and-docker-compose-on-raspberry-pi-os.html
 
-RasperryOS 64-Bit: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-11-08/
+RasperryOS 64-Bit:
+ * Download: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2021-11-08/
 
-OpenHAB 3 Docker Installation: https://www.laub-home.de/wiki/OpenHAB_3_Docker_Installation
+OpenHAB:
+ * Docker: https://www.laub-home.de/wiki/OpenHAB_3_Docker_Installation
+ * Tasmota: https://community.openhab.org/t/control-tasmota-flashed-devices-via-mqtt/104099
 
-Control Tasmota flashed devices via MQTT: https://community.openhab.org/t/control-tasmota-flashed-devices-via-mqtt/104099
+Home Assistant:
+ * Docker: https://www.dahlen.org/2018/03/23/home-assistant-mit-docker-auf-raspberry-pi-betreiben/
+ * Docker-Compose: https://iotechonline.com/home-assistant-install-with-docker-compose/?cn-reloaded=1
+ * Tasmota: https://www.home-assistant.io/integrations/tasmota/
+
+FHEM:
+ * Docker: https://blog.krannich.de/fhem-auf-rpi-mit-docker-und-hypriot/
+ * Tasmota: https://gettoweb.de/haus/tasmota-device-in-fhem-einbinden/
 
 ## Config
 
@@ -27,7 +44,7 @@ Login via ssh & start your journey
 sudo raspi-config
 ```
 
-## Basic
+### Basic
 
 ```
 # Enable 64-bit
@@ -146,11 +163,11 @@ docker-compose up -d
 ```
 cd ~
 
-sudo mkdir -p /media/data/openhab/userdata
-sudo mkdir -p /media/data/mosquitto/data
-sudo mkdir -p /media/data/config
-sudo mkdir -p /media/influxdb/data
-sudo mkdir -p /media/grafana/data
+sudo mkdir -p /media/data/openhab/openhab/userdata
+sudo mkdir -p /media/data/openhab/mosquitto/data
+sudo mkdir -p /media/data/openhab/mosquitto/config
+sudo mkdir -p /media/data/openhab/influxdb/data
+sudo mkdir -p /media/data/openhab/grafana/data
 
 cd iot-server/openhab
 
@@ -163,12 +180,24 @@ sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 
-sudo cp ./mosquitto_conf/mosquitto.conf /media/data/mosquitto/config/
-sudo touch /media/data/mosquitto/config/mosquitto.passwd
+sudo cp ./mosquitto_conf/mosquitto.conf /media/data/openhab/mosquitto/config/
+sudo touch /media/data/openhab/mosquitto/config/mosquitto.passwd
 
 sudo ufw allow 8080
 sudo ufw reload
 sudo ufw status
 
 docker-compose up -d
+```
+
+## Run Home Assistant
+
+```
+
+```
+
+## Run FHEM
+
+```
+
 ```
