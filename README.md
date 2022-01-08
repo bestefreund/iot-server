@@ -9,6 +9,8 @@ In every folder you'll find a docker-compose file representing an independent in
 ## Folder structure
 
 ```
+tree -I ".git*" -a
+
 .
 ├── fhem
 ├── homeassistant
