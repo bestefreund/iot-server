@@ -6,6 +6,26 @@ This Repo is intended for testing & tools for related to IoT-devices.
 You can choose one of the platform or all of them, but be aware of hardware & resource limitations of your system.
 In every folder you'll find a docker-compose file representing an independent infratructure.
 
+## Folder structure
+
+```
+.
+├── fhem
+├── homeassistant
+│   ├── configurator-config
+│   │   ├── hass-config
+│   │   │   └── configuration.yaml
+│   │   └── settings.conf
+│   └── docker-compose.yml
+├── openhab
+│   ├── docker-compose.yml
+│   └── mosquitto_conf
+│       └── mosquitto.conf
+├── portainer
+│   └── docker-compose.yml
+└── README.md
+```
+
 ## Referneces
 
 Raspberry Docker:
