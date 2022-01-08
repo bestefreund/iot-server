@@ -14,6 +14,8 @@ services:
     image: eclipse-mosquitto:latest
     container_name: "mosquitto"
     restart: always
+    networks:
+      - network
     volumes:
       - "/media/data/homeassistant/data:/mosquitto/data"
     ports:
@@ -25,8 +27,11 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   nodered:
-    container_name: nodered
     image: nodered/node-red
+    container_name: nodered
+    restart: always
+    networks:
+      - network
     ports:
       - "1880:1880"
     volumes:
@@ -36,13 +41,14 @@ services:
       - mosquitto
     environment:
       TZ: "Europe/Madrid"
-    restart: always
     user: "${PUID}:${PGID}"
 
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
     container_name: hass-configurator
     restart: always
+    networks:
+      - network
     ports:
       - "3218:3218/tcp"
     depends_on:
@@ -51,3 +57,7 @@ services:
       - "./configurator-config:/config"
       - "/media/data/homeassistant/homeassistant/config:/hass-config"
     user: "${PUID}:${PGID}"
+
+networks:
+  network:
+    driver: bridge
