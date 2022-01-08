@@ -10,9 +10,6 @@ git clone https://gitlab.bjoern-freund.de/docker/mosquitto.git
 cd mosquitto
 docker build -t mosquitto .
 
-$username=""
-docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
-
 cd ../iot-server/openhab
 
 sudo mkdir -p /media/data/openhab/openhab/userdata
@@ -35,4 +32,7 @@ sudo ufw reload
 sudo ufw status
 
 docker-compose up -d
+
+$username=""
+docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
 ```
