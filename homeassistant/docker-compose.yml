@@ -49,5 +49,5 @@ services:
       - homeassistant
     volumes:
       - "./configurator-config:/config"
-      - "/media/data/homeassistant/homeassistant/config:/config:/hass-config"
+      - "/media/data/homeassistant/homeassistant/config:/hass-config"
     user: "${PUID}:${PGID}"
