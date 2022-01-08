@@ -37,6 +37,7 @@ services:
     environment:
       TZ: "Europe/Madrid"
     restart: always
+    user: "${PUID}:${PGID}"
 
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
