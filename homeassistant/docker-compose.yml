@@ -1,56 +1,70 @@
 services:
-  openhab:
-    image: openhab/openhab:3.2.0
-    container_name: "openhab"
-    depends_on:
-      - influxdb
-      - mosquitto
-    restart: always
+  homeassistant:
+    container_name: hass
+    image: homeassistant/home-assistant
     volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/media/data/openhab/userdata:/openhab/userdata"
-    environment:
-      TZ: ${TZ}
-      OPENHAB_HTTP_PORT: ${OPENHAB_HTTP_PORT}
-      OPENHAB_HTTPS_PORT: ${OPENHAB_HTTPS_PORT}
-      CRYPTO_POLICY: "unlimited"
-      EXTRA_JAVA_OPTS: "-Duser.timezone=${TZ}"
-      USER_ID: 999
-      GROUP_ID: 994
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - ./hass-config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
     network_mode: host
+    depends_on:
+      - mariadb
+      - mosquitto
+
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: ha_db
+      MYSQL_USER: homeassistant
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+      PUID: 1000
+      PGID: 1000
+    volumes:
+      - ./mariadb:/config
+    ports:
+      - "3306:3306"
+
+  nodered:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./nodered:/data
+    depends_on:
+      - homeassistant
+      - mosquitto
+    environment:
+      TZ: "Europe/Madrid"
+    restart: unless-stopped
 
   mosquitto:
     image: eclipse-mosquitto:latest
     container_name: "mosquitto"
     restart: always
     volumes:
-      - "/media/data/mosquitto/config:/mosquitto/config"
-      - "/media/data/mosquitto/data:/mosquitto/data"
+      - "/media/data/homeassistant/mosquitto/config:/mosquitto/config"
+      - "/media/data/homeassistant/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
       - ${MOSQUITTO_MQTTS_PORT}:8883
-      - 1884:8080
     environment:
       TZ: ${TZ}
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-    networks:
-      app-nw:
-        aliases:
-          - mqtt
-  
-networks:
-  app-nw:
-    internal: false
-    driver: bridge
-    driver_opts:
-      com.docker.network.bridge.name: app-homeass
-  backend-nw:
-    internal: true
-    driver: bridge
-    driver_opts:
-      com.docker.network.bridge.name: app-homeass
 
+  hass-configurator:
+    image: "causticlab/hass-configurator-docker:arm"
+    container_name: hass-configurator
+    restart: unless-stopped
+    ports:
+      - "3218:3218/tcp"
+    depends_on:
+      - homeassistant
+    volumes:
+      - "./configurator-config:/config"
+      - "./hass-config:/hass-config"
+    user: "${PUID}:${PGID}"
