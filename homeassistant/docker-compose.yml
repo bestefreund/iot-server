@@ -3,7 +3,7 @@ services:
     container_name: hass
     image: homeassistant/home-assistant
     volumes:
-      - ./hass-config:/config
+      - /media/data/homeassistant/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
     network_mode: host
@@ -37,17 +37,17 @@ services:
       - mosquitto
     environment:
       TZ: "Europe/Madrid"
-    restart: unless-stopped
+    restart: always
 
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
     container_name: hass-configurator
-    restart: unless-stopped
+    restart: always
     ports:
       - "3218:3218/tcp"
     depends_on:
       - homeassistant
     volumes:
       - "./configurator-config:/config"
-      - "./hass-config:/hass-config"
+      - "/media/data/homeassistant/homeassistant/config:/config:/hass-config"
     user: "${PUID}:${PGID}"
