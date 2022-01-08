@@ -1,9 +1,9 @@
-# IoT-Server: Raspberry Pi 3 with Docker / openHub
+# IoT-Server: Raspberry Pi 3 with Docker (& an USB-Stick for data)
 
 ## Descritption
 
 This Repo is intended for testing & tools for related to IoT-devices.
-You can choose one of the platform or all of them, but be aware of hardware & resource limitations of your system.
+You can choose one of the platforms or all of them, but be aware of hardware & resource limitations of your system.
 In every folder you'll find a docker-compose file representing an independent infratructure.
 
 ## Folder structure
@@ -21,16 +21,10 @@ tree -I ".git*" -a
 │   ├── .env
 │   ├── hass-config
 │   │   └── configuration.yaml
-│   ├── mariadb
-│   ├── mosquitto_conf
-│   │   └── mosquitto.conf
-│   ├── nodered
 │   └── README.md
 ├── openhab
 │   ├── docker-compose.yml
 │   ├── .env
-│   ├── mosquitto_conf
-│   │   └── mosquitto.conf
 │   └── README.md
 ├── portainer
 │   ├── docker-compose.yml
