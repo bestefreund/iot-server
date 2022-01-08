@@ -23,7 +23,7 @@ services:
     network_mode: host
 
   mosquitto:
-    image: eclipse-mosquitto:latest
+    image: mosquitto
     container_name: "mosquitto"
     restart: always
     volumes:
