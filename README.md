@@ -11,7 +11,6 @@ In every folder you'll find a docker-compose file representing an independent in
 ```
 .
 ├── fhem
-│   └── .gitkeep
 ├── homeassistant
 │   ├── configurator-config
 │   │   └── settings.conf
@@ -19,8 +18,10 @@ In every folder you'll find a docker-compose file representing an independent in
 │   ├── .env
 │   ├── hass-config
 │   │   └── configuration.yaml
-│   └── mosquitto_conf
-│       └── mosquitto.conf
+│   ├── mariadb
+│   ├── mosquitto_conf
+│   │   └── mosquitto.conf
+│   └── nodered
 ├── openhab
 │   ├── docker-compose.yml
 │   ├── .env
