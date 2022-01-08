@@ -13,6 +13,7 @@ tree -I ".git*" -a
 
 .
 ├── fhem
+│   └── README.md
 ├── homeassistant
 │   ├── configurator-config
 │   │   └── settings.conf
@@ -23,14 +24,17 @@ tree -I ".git*" -a
 │   ├── mariadb
 │   ├── mosquitto_conf
 │   │   └── mosquitto.conf
-│   └── nodered
+│   ├── nodered
+│   └── README.md
 ├── openhab
 │   ├── docker-compose.yml
 │   ├── .env
-│   └── mosquitto_conf
-│       └── mosquitto.conf
+│   ├── mosquitto_conf
+│   │   └── mosquitto.conf
+│   └── README.md
 ├── portainer
-│   └── docker-compose.yml
+│   ├── docker-compose.yml
+│   └── README.md
 └── README.md
 ```
 
@@ -174,58 +178,4 @@ sudo nano /boot/cmdline.txt
 sudo reboot
 
 docker info
-```
-
-## Run Portainer
-
-```
-sudo mkdir -p /media/data/portainer/data
-
-cd ~/iot-server/portainer
-
-docker-compose up -d
-```
-
-## Run OpenHAB
-
-```
-cd ~
-
-sudo mkdir -p /media/data/openhab/openhab/userdata
-sudo mkdir -p /media/data/openhab/mosquitto/data
-sudo mkdir -p /media/data/openhab/mosquitto/config
-sudo mkdir -p /media/data/openhab/influxdb/data
-sudo mkdir -p /media/data/openhab/grafana/data
-
-cd iot-server/openhab
-
-# Set the passwords by your own!
-INFLUX_ADMIN_PASSWD=""
-INFLUX_USER_PASSWD=""
-INFLUX_USER_READ_PASSWD=""
-
-sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
-sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
-sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
-
-sudo cp ./mosquitto_conf/mosquitto.conf /media/data/openhab/mosquitto/config/
-sudo touch /media/data/openhab/mosquitto/config/mosquitto.passwd
-
-sudo ufw allow 8080
-sudo ufw reload
-sudo ufw status
-
-docker-compose up -d
-```
-
-## Run Home Assistant
-
-```
-
-```
-
-## Run FHEM
-
-```
-
 ```
