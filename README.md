@@ -11,14 +11,19 @@ In every folder you'll find a docker-compose file representing an independent in
 ```
 .
 ├── fhem
+│   └── .gitkeep
 ├── homeassistant
 │   ├── configurator-config
-│   │   ├── hass-config
-│   │   │   └── configuration.yaml
 │   │   └── settings.conf
-│   └── docker-compose.yml
+│   ├── docker-compose.yml
+│   ├── .env
+│   ├── hass-config
+│   │   └── configuration.yaml
+│   └── mosquitto_conf
+│       └── mosquitto.conf
 ├── openhab
 │   ├── docker-compose.yml
+│   ├── .env
 │   └── mosquitto_conf
 │       └── mosquitto.conf
 ├── portainer
