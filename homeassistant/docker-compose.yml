@@ -11,7 +11,7 @@ services:
       - mosquitto
 
   mosquitto:
-    image: eclipse-mosquitto:latest
+    image: mosquitto
     container_name: "mosquitto"
     restart: always
     networks:
