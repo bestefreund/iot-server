@@ -54,7 +54,7 @@ services:
     depends_on:
       - homeassistant
     volumes:
-      - "./configurator-config:/config"
+      - "/media/data/homeassistant/homeassistant/configurator-config:/config"
       - "/media/data/homeassistant/homeassistant/config:/hass-config"
     user: "${PUID}:${PGID}"
 
