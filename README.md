@@ -132,6 +132,49 @@ sudo ufw allow 22
 sudo ufw enable
 sudo ufw reload
 sudo ufw status
+
+# Reboot automatic
+sudo -i
+
+# Script for reboot
+cat > /root/reboot_automatic.sh << EOF
+#!/bin/sh
+# Reboot the host
+echo "Rebooting...\n"
+reboot
+
+EOF
+chmod +x /root/reboot_automatic.sh
+
+# Systemd-unit for reboot automatic
+cat > /etc/systemd/system/reboot_automatic.service << EOF
+[Unit]
+Description=Reboot automatically
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/root/reboot_automatic.sh
+EOF
+
+# Systemd-timer every day of month at 4 o'clock
+bash -c "cat > /etc/systemd/system/reboot_automatic.timer" << EOF
+[Unit]
+Description=Run reboot every day at 4 o'clock
+
+[Timer]
+OnCalendar=*-*-* 4:00:00
+
+[Install]
+WantedBy=timers.target
+EOF
+
+systemctl daemon-reload
+systemctl enable reboot_automatic.timer
+systemctl start reboot_automatic.timer 
+systemctl status reboot_automatic.timer reboot_automatic.service
+
+exit
 ```
 
 ## Docker
