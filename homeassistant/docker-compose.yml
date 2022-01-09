@@ -19,6 +19,7 @@ services:
     networks:
       - network
     volumes:
+      - "/media/data/homeassistant/mosquitto/config:/mosquitto/config"
       - "/media/data/homeassistant/mosquitto/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
@@ -46,7 +47,7 @@ services:
     user: "${PUID}"
 
   hass-configurator:
-    image: "causticlab/hass-configurator-docker:0.4.0-arm64"
+    image: "causticlab/hass-configurator-docker:0.4.0-arm"
     container_name: hass-configurator
     restart: always
     networks:
