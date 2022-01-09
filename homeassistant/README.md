@@ -13,6 +13,7 @@ docker build -t mosquitto .
 cd ../iot-server/homeassistant
 
 sudo mkdir -p /media/data/homeassistant/homeassistant/config
+sudo mkdir -p /media/data/homeassistant/homeassistant/configurator-config
 sudo mkdir -p /media/data/homeassistant/mosquitto/data
 sudo mkdir -p /media/data/homeassistant/nodered/data
 
