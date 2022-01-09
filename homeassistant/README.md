@@ -30,14 +30,22 @@ sudo ufw status
 
 docker-compose up -d
 
-# Workaround "Can't compare unknown and SimpleVer"
+username="joschi"
+docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
+
+docker system prune -f --volumes
+```
+
+Workaround "Can't compare unknown and SimpleVer"
+
+```
 docker exec -it home bash
+
 cat /config/.HA_VERSION
 exit
 
+docker rm -f home
+
 ha_version="2021.12.8"
 sudo bash -c "echo \"${ha_version}\" > /media/data/homeassistant/homeassistant/config/.HA_VERSION"
-
-username=""
-docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
 ```
