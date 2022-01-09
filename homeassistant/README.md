@@ -38,6 +38,6 @@ exit
 ha_version="2021.12.8"
 sudo bash -c "echo \"${ha_version}\" > /media/data/homeassistant/homeassistant/config/.HA_VERSION"
 
-username="joschi"
+username=""
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
 ```
