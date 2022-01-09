@@ -23,7 +23,7 @@ sudo ufw allow 8080
 sudo ufw reload
 sudo ufw status
 
-docker-compose up -d
+sudo docker-compose up -d
 
 $username=""
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
