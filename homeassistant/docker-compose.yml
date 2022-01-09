@@ -3,13 +3,16 @@ services:
     container_name: hass
     image: homeassistant/home-assistant
     volumes:
-      - /media/data/homeassistant/homeassistant/config:/config
+      - "./run:/etc/services.d/home-assistant/run"
       - /etc/localtime:/etc/localtime:ro
     restart: always
     network_mode: host
     depends_on:
       - mosquitto
-    user: "${PUID}:${PGID}"
+    environment:
+        TZ: ${TZ}
+        PUID: ${PGID}
+        PGID: ${PGID}
 
   mosquitto:
     image: mosquitto

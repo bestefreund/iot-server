@@ -47,6 +47,7 @@ OpenHab:
 Home Assistant:
  * Docker: https://www.dahlen.org/2018/03/23/home-assistant-mit-docker-auf-raspberry-pi-betreiben/
  * Docker-Compose: https://iotechonline.com/home-assistant-install-with-docker-compose/?cn-reloaded=1
+ * Home Assistant using venv in Docker: https://github.com/tribut/homeassistant-docker-venv
  * Tasmota: https://www.home-assistant.io/integrations/tasmota/
 
 FHEM:
