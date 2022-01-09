@@ -9,6 +9,7 @@ services:
     network_mode: host
     depends_on:
       - mosquitto
+    user: "${PUID}:${PGID}"
 
   mosquitto:
     image: mosquitto
