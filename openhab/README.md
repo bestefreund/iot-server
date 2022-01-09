@@ -26,6 +26,7 @@ sed -i "s/INFLUX_ADMIN_PASSWD/${INFLUX_ADMIN_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_PASSWD/${INFLUX_USER_PASSWD}/g" .env
 sed -i "s/INFLUX_USER_READ_PASSWD/${INFLUX_USER_READ_PASSWD}/g" .env
 
+# Firewall
 sudo ufw allow 8080
 sudo ufw reload
 sudo ufw status
