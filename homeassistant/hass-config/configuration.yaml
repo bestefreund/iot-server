@@ -1,6 +1,8 @@
 default_config:
+
 http:
   server_port: 8080
+
 panel_iframe:
   configurator:
     title: Configurator
@@ -12,5 +14,6 @@ panel_iframe:
     icon: mdi:shuffle-variant
     url: http://127.0.0.1:1880/
     require_admin: true
+
 mqtt:
   broker: 127.0.0.1
