@@ -12,11 +12,11 @@ sudo mkdir -p /media/data/homeassistant/mosquitto/data
 sudo mkdir -p /media/data/homeassistant/nodered/data
 
 # Home Assistant config
-localIP="$(ifconfig docker0 | awk '$1 == "inet" {print $2}')"
-sed -i "s/<hostip>/${localIP}/g" hass-config/configuration.yaml
-
 sudo cp ./hass-config/configuration.yaml /media/data/homeassistant/homeassistant/config/
 sudo cp ./configurator-config/settings.conf /media/data/homeassistant/homeassistant/configurator-config/
+
+localIP="$(ifconfig docker0 | awk '$1 == "inet" {print $2}')"
+sed -i "s/<hostip>/${localIP}/g" /media/data/homeassistant/homeassistant/config/configuration.yaml
 
 # Mosquitto config
 sudo cp ./mosquitto-config/* /media/data/homeassistant/mosquitto/config/
@@ -32,6 +32,8 @@ docker-compose up -d
 
 username=""
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
+
+docker restart mosquitto
 
 docker system prune -f --volumes
 ```
