@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: hass
-    image: homeassistant/home-assistant
+    image: homeassistant/home-assistant:2021.12
     volumes:
       - /media/data/homeassistant/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -29,7 +29,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=true"
 
   nodered:
-    image: nodered/node-red
+    image: nodered/node-red:2.1.4
     container_name: nodered
     restart: always
     networks:
@@ -46,7 +46,7 @@ services:
     user: "${PUID}"
 
   hass-configurator:
-    image: "causticlab/hass-configurator-docker:arm"
+    image: "causticlab/hass-configurator-docker:0.4.0-arm64"
     container_name: hass-configurator
     restart: always
     networks:
