@@ -7,13 +7,13 @@ panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: http://127.0.0.1:3218/
+    url: http://<hostip>:3218/
     require_admin: true
   nodered:
     title: Node-Red
     icon: mdi:shuffle-variant
-    url: http://127.0.0.1:1880/
+    url: http://<hostip>:1880/
     require_admin: true
 
 mqtt:
-  broker: 127.0.0.1
+  broker: <hostip>

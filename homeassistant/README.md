@@ -18,6 +18,9 @@ sudo mkdir -p /media/data/homeassistant/mosquitto/data
 sudo mkdir -p /media/data/homeassistant/nodered/data
 
 # Home Assistant config
+localIP="$(ifconfig eth0 | awk '$1 == "inet" {print $2}')"
+sed -i "s/<hostip>/${localIP}/g" hass-config/configuration.yaml
+
 sudo cp ./hass-config/configuration.yaml /media/data/homeassistant/homeassistant/config/
 sudo cp ./configurator-config/settings.conf /media/data/homeassistant/homeassistant/configurator-config/
 
