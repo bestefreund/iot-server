@@ -14,7 +14,6 @@ cd ../iot-server/openhab
 
 sudo mkdir -p /media/data/openhab/openhab/userdata
 sudo mkdir -p /media/data/openhab/mosquitto/data
-sudo mkdir -p /media/data/openhab/mosquitto/config
 sudo mkdir -p /media/data/openhab/influxdb/data
 sudo mkdir -p /media/data/openhab/grafana/data
 
