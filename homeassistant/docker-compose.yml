@@ -14,11 +14,12 @@ services:
 
   mosquitto:
     image: mosquitto
-    container_name: "mosquitto"
+    container_name: "eclipse-mosquitto"
     restart: always
     networks:
       - network
     volumes:
+      - "/media/data/homeassistant/mosquitto/config/:/mosquitto/config"
       - "/media/data/homeassistant/mosquitto/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883

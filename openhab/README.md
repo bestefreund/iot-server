@@ -3,20 +3,18 @@
 Setup an OpenHab infrastructure including Mosquitto, InfluxDB & Grafana
 
 ```
-cd ~
-
-git clone https://gitlab.bjoern-freund.de/docker/mosquitto.git
-
-cd mosquitto
-docker build -t mosquitto .
-
 cd ../iot-server/openhab
 
 sudo mkdir -p /media/data/openhab/openhab/userdata
+sudo mkdir -p /media/data/openhab/mosquitto/config/
 sudo mkdir -p /media/data/openhab/mosquitto/data
 sudo mkdir -p /media/data/openhab/influxdb/data
 sudo mkdir -p /media/data/openhab/grafana/data
 
+# Mosquitto config
+sudo cp ./mosquitto-config/* /media/data/openhab/mosquitto/config/
+
+# Influx DB config
 # Set the passwords by your own!
 INFLUX_ADMIN_PASSWD=""
 INFLUX_USER_PASSWD=""

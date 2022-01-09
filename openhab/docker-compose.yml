@@ -24,9 +24,10 @@ services:
 
   mosquitto:
     image: mosquitto
-    container_name: "mosquitto"
+    container_name: "eclipse-mosquitto"
     restart: always
     volumes:
+      - "/media/data/openhab/mosquitto/config/:/mosquitto/config"
       - "/media/data/openhab/mosquitto/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883

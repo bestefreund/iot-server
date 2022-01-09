@@ -3,17 +3,11 @@
 Setup a Home Assistant infrastructure including Mosquitto & Node-Red
 
 ```
-cd ~
-
-git clone https://gitlab.bjoern-freund.de/docker/mosquitto.git
-
-cd mosquitto
-docker build -t mosquitto .
-
 cd ../iot-server/homeassistant
 
 sudo mkdir -p /media/data/homeassistant/homeassistant/config
 sudo mkdir -p /media/data/homeassistant/homeassistant/configurator-config
+sudo mkdir -p /media/data/homeassistant/mosquitto/config
 sudo mkdir -p /media/data/homeassistant/mosquitto/data
 sudo mkdir -p /media/data/homeassistant/nodered/data
 
@@ -23,6 +17,9 @@ sed -i "s/<hostip>/${localIP}/g" hass-config/configuration.yaml
 
 sudo cp ./hass-config/configuration.yaml /media/data/homeassistant/homeassistant/config/
 sudo cp ./configurator-config/settings.conf /media/data/homeassistant/homeassistant/configurator-config/
+
+# Mosquitto config
+sudo cp ./mosquitto-config/* /media/data/homeassistant/mosquitto/config/
 
 sudo chown -R $USER /media/data/homeassistant
 
