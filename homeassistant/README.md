@@ -28,7 +28,15 @@ sudo ufw allow 8080
 sudo ufw reload
 sudo ufw status
 
-sudo docker-compose up -d
+docker-compose up -d
+
+# Workaround "Can't compare unknown and SimpleVer"
+docker exec -it home bash
+cat /config/.HA_VERSION
+exit
+
+ha_version="2021.12.8"
+sudo bash -c "echo \"${ha_version}\" > /media/data/homeassistant/homeassistant/config/.HA_VERSION"
 
 username="joschi"
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
