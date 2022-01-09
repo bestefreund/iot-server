@@ -13,7 +13,7 @@ services:
       TZ: ${TZ}
 
   mosquitto:
-    image: eclipse-mosquitto
+    image: eclipse-mosquitto:2
     container_name: mosquitto
     restart: always
     networks:
