@@ -34,7 +34,5 @@ docker-compose up -d
 $username=""
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
 
-docker restart mosquitto
-
 docker system prune -f --volumes
 ```
