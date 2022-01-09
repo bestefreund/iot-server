@@ -33,7 +33,7 @@ sudo ufw status
 
 docker-compose up -d
 
-username="joschi"
+username=""
 docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/mosquitto.passwd $username
 
 docker system prune -f --volumes
