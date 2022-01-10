@@ -38,7 +38,7 @@ docker restart mosquitto
 docker system prune -f --volumes
 
 # Install Home Assistant Community Store
-echo "wget -O - https://get.hacs.xyz | bash -" | docker exec -it hass
+echo "wget -O - https://get.hacs.xyz | bash -" | docker exec -it hass -
 ```
 
 Workaround "Can't compare unknown and SimpleVer"
