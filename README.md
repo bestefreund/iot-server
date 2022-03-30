@@ -12,8 +12,6 @@ In every folder you'll find a docker-compose file representing an independent in
 tree -I ".git*" -a
 
 .
-├── fhem
-│   └── README.md
 ├── homeassistant
 │   ├── configurator-config
 │   │   └── settings.conf
@@ -21,10 +19,16 @@ tree -I ".git*" -a
 │   ├── .env
 │   ├── hass-config
 │   │   └── configuration.yaml
+│   ├── mosquitto-config
+│   │   ├── mosquitto.conf
+│   │   └── mosquitto.passwd
 │   └── README.md
 ├── openhab
 │   ├── docker-compose.yml
 │   ├── .env
+│   ├── mosquitto-config
+│   │   ├── mosquitto.conf
+│   │   └── mosquitto.passwd
 │   └── README.md
 ├── portainer
 │   ├── docker-compose.yml
