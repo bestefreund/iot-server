@@ -21,6 +21,7 @@ services:
     volumes:
       - "/media/data/homeassistant/mosquitto/config/:/mosquitto/config"
       - "/media/data/homeassistant/mosquitto/data:/mosquitto/data"
+      - "/media/data/homeassistant/mosquitto/log:/mosquitto/log"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
       - ${MOSQUITTO_MQTTS_PORT}:8883
