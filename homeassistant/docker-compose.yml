@@ -3,7 +3,8 @@ services:
     container_name: hass
     image: homeassistant/home-assistant:2021.12
     volumes:
-      - /media/data/homeassistant/homeassistant/config:/config
+#      - /media/data/homeassistant/homeassistant/config:/config
+      - /srv/homeassistant/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
     network_mode: host
@@ -19,9 +20,11 @@ services:
     networks:
       - network
     volumes:
-      - "/media/data/homeassistant/mosquitto/config/:/mosquitto/config"
-      - "/media/data/homeassistant/mosquitto/data:/mosquitto/data"
-      - "/media/data/homeassistant/mosquitto/log:/mosquitto/log"
+#      - "/media/data/homeassistant/mosquitto/config/:/mosquitto/config"
+#      - "/media/data/homeassistant/mosquitto/data:/mosquitto/data"
+#      - "/media/data/homeassistant/mosquitto/log:/mosquitto/log"
+      - "/srv/homeassistant/mosquitto/config/:/mosquitto/config"
+      - "/srv/homeassistant/mosquitto/data:/mosquitto/data"
     ports:
       - ${MOSQUITTO_MQTT_PORT}:1883
       - ${MOSQUITTO_MQTTS_PORT}:8883
@@ -39,7 +42,8 @@ services:
     ports:
       - "1880:1880"
     volumes:
-      - /media/data/homeassistant/nodered/data:/data
+#      - /media/data/homeassistant/nodered/data:/data
+      - /srv/homeassistant/nodered/data:/data
     depends_on:
       - homeassistant
       - mosquitto
@@ -58,8 +62,10 @@ services:
     depends_on:
       - homeassistant
     volumes:
-      - "/media/data/homeassistant/homeassistant/configurator-config:/config"
-      - "/media/data/homeassistant/homeassistant/config:/hass-config"
+#      - "/media/data/homeassistant/homeassistant/configurator-config:/config"
+#      - "/media/data/homeassistant/homeassistant/config:/hass-config"
+      - "/srv/homeassistant/homeassistant/configurator-config:/config"
+      - "/srv/homeassistant/homeassistant/config:/hass-config"
     user: "${PUID}:${PGID}"
 
 networks:

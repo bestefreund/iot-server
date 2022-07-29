@@ -54,3 +54,10 @@ docker rm -f home
 ha_version="2021.12.8"
 sudo bash -c "echo \"${ha_version}\" > /media/data/homeassistant/homeassistant/config/.HA_VERSION"
 ```
+
+## Caution
+
+At the moment there are some problems related to growing disk usage & lots of I/O operations!
+
+The `/media/data` USB-stick has been removed and at the moment everything is written on the sd card in `/srv`.
+
