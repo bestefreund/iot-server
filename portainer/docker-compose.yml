@@ -4,7 +4,7 @@ networks:
 
 services:
   portainer:
-    image: 'portainer/portainer-ce:2.11.0'
+    image: 'portainer/portainer-ce:linux-arm64-2.14.2'
     networks:
       network:
     restart: always
@@ -14,5 +14,6 @@ services:
       - '9000:9000'
     volumes:
       - '/etc/localtime:/etc/localtime:ro'
-      - '/media/data/portainer/data:/data'
+#      - '/media/data/portainer/data:/data'
+      - '/srv/portainer/data:/data'
       - '/var/run/docker.sock:/var/run/docker.sock'
