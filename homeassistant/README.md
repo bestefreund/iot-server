@@ -60,23 +60,3 @@ sudo bash -c "echo \"${ha_version}\" > /media/data/homeassistant/homeassistant/c
 At the moment there are some problems related to growing disk usage & lots of I/O operations!
 
 The `/media/data` USB-stick has been removed and at the moment everything is written on the sd card in `/srv`.
-
-## Docker CleanUp routines
-
-### Start-stop docker-compose with systemd
-
-```
-sudo cp ./docker_cleanup/docker-compose@.service /etc/systemd/system/docker-compose@.service
-sudo systemctl daemon-reload
-sudo systemctl enable docker-compose@homeassistant
-sudo reboot
-```
-
-### Docker cleanup timer with system
-
-```
-sudo cp ./docker_cleanup/docker-cleanup.timer ./docker_cleanup/docker-cleanup.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable docker-cleanup.timer
-sudo reboot
-```

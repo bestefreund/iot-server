@@ -12,6 +12,11 @@ In every folder you'll find a docker-compose file representing an independent in
 tree -I ".git*" -a
 
 .
+├── docker_cleanup
+│   ├── daemon.json
+│   ├── docker-cleanup.service
+│   ├── docker-cleanup.timer
+│   └── docker-compose@.service
 ├── homeassistant
 │   ├── configurator-config
 │   │   └── settings.conf
@@ -220,4 +225,24 @@ sudo nano /boot/cmdline.txt
 sudo reboot
 
 docker info
+```
+
+## Docker CleanUp routines
+
+### Start-stop docker-compose with systemd
+
+```
+sudo cp ./docker_cleanup/docker-compose@.service /etc/systemd/system/docker-compose@.service
+sudo systemctl daemon-reload
+sudo systemctl enable docker-compose@homeassistant
+sudo reboot
+```
+
+### Docker cleanup timer with system
+
+```
+sudo cp ./docker_cleanup/docker-cleanup.timer ./docker_cleanup/docker-cleanup.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable docker-cleanup.timer
+sudo reboot
 ```
