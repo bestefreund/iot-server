@@ -2,7 +2,7 @@
 Description=Docker cleanup timer
 
 [Timer]
-OnUnitInactiveSec=12h
+OnCalendar=*-*-* 12:00:00
 
 [Install]
 WantedBy=timers.target
